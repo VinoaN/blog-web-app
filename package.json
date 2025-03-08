@@ -22,6 +22,7 @@
     "@reduxjs/toolkit": "^2.5.1",
     "@siddant-rachha/blog-components": "^1.0.3",
     "axios": "^1.7.9",
+    "firebase": "^10.0.0",
     "firebase-admin": "^13.1.0",
     "next": "15.1.7",
     "react": "^19.0.0",
