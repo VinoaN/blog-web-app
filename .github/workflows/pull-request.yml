@@ -20,13 +20,16 @@ jobs:
 
       - name: Create .env file
         run: |
-          echo "NEXT_PUBLIC_APIKEY=${{ secrets.NEXT_PUBLIC_APIKEY }}" >> .env.local
-          echo "NEXT_PUBLIC_AUTHDOMAIN=${{ secrets.NEXT_PUBLIC_AUTHDOMAIN }}" >> .env.local
-          echo "NEXT_PUBLIC_PROJECTID=${{ secrets.NEXT_PUBLIC_PROJECTID }}" >> .env.local
-          echo "NEXT_PUBLIC_STORAGEBUCKET=${{ secrets.NEXT_PUBLIC_STORAGEBUCKET }}" >> .env.local
-          echo "NEXT_PUBLIC_MESSAGINGSENDERID=${{ secrets.NEXT_PUBLIC_MESSAGINGSENDERID }}" >> .env.local
-          echo "NEXT_PUBLIC_APPID=${{ secrets.NEXT_PUBLIC_APPID }}" >> .env.local
-          echo "NEXT_PUBLIC_MEASUREMENTID=${{ secrets.NEXT_PUBLIC_MEASUREMENTID }}" >> .env.local
+          cat <<EOF > .env.local
+          NEXT_PUBLIC_APIKEY=${{ secrets.NEXT_PUBLIC_APIKEY }}
+          NEXT_PUBLIC_AUTHDOMAIN=${{ secrets.NEXT_PUBLIC_AUTHDOMAIN }}
+          NEXT_PUBLIC_PROJECTID=${{ secrets.NEXT_PUBLIC_PROJECTID }}
+          NEXT_PUBLIC_STORAGEBUCKET=${{ secrets.NEXT_PUBLIC_STORAGEBUCKET }}
+          NEXT_PUBLIC_MESSAGINGSENDERID=${{ secrets.NEXT_PUBLIC_MESSAGINGSENDERID }}
+          NEXT_PUBLIC_APPID=${{ secrets.NEXT_PUBLIC_APPID }}
+          NEXT_PUBLIC_MEASUREMENTID=${{ secrets.NEXT_PUBLIC_MEASUREMENTID }}
+          FIREBASE_ADMIN_KEY=${{ secrets.FIREBASE_ADMIN_KEY }}
+          EOF
 
       - name: Install dependencies
         run: npm install
