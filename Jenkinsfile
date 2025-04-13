@@ -1,15 +1,26 @@
 pipeline {
+
     agent { label 'Jenkins-Agent' }
-    tools{
-      nodejs 'nodejs23'
+	
+	tools {
+    nodejs 'nodejs23'
 }
+
+
     environment {
         DOCKERHUB_CREDENTIALS = 'docker'
         IMAGE_NAME = 'vinao/your-next-app'
         IMAGE_TAG = 'latest'
     }
 
+  
     stages {
+	
+	stage("Cleanup Workspace"){
+      steps{
+        cleanWs()
+      }
+    }
         stage('Checkout') {
             steps {
                 git branch: 'main', credentialsId: 'github', url: 'https://github.com/VinoaN/blog-web-app.git'
@@ -43,6 +54,6 @@ pipeline {
             steps {
                 sh 'docker run -d -p 3000:3000 --name next-app-container ${IMAGE_NAME}:${IMAGE_TAG}'
             }
-       }
+        }
     }
 }
