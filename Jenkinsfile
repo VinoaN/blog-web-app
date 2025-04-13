@@ -1,6 +1,8 @@
 pipeline {
     agent { label 'Jenkins-Agent' }
-
+    tools{
+      nodejs 'nodejs23'
+}
     environment {
         DOCKERHUB_CREDENTIALS = 'docker'
         IMAGE_NAME = 'vinao/your-next-app'
